@@ -1,21 +1,24 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import { STORAGE_PATH } from './types/constants';
 
 // Determine which environment file to load
-dotenv.config({
-  path: path.resolve(
-    __dirname,
-    `./env/.env.${process.env.ENVIRONMENT ?? 'dev'}`
-  ),
-  override: true, // ensures existing process.env values are overwritten
-});
+const environmentPath = process.env.ENVIRONMENT
+  ? path.resolve(__dirname, `./env/.env.${process.env.ENVIRONMENT}`)
+  : path.resolve(__dirname, './env/.env.dev');
 
+dotenv.config({ path: environmentPath });
+
+import { STORAGE_PATH } from './types/constants';
+
+// Load env variables, then require env exports so they read from process.env.
+// Use runtime require to avoid static import hoisting which can run `env/index.ts`
+// before dotenv has populated process.env.
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { URL } = require('./env');
 
 export default defineConfig({
-  globalSetup: './setup/global.ts',
+  globalSetup: require.resolve('./setup/global.ts'),
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
