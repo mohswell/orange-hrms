@@ -19,7 +19,7 @@ export const PASSWORD = assertValue(
   "Missing environment variable: PASSWORD"
 );
 
-export const ENV_NAME = assertValue(
-  process.env.ENV_NAME!,
-  "Missing environment variable: ENV_NAME"
+export const ENVIRONMENT = assertValue(
+  process.env.ENVIRONMENT!,
+  "Missing environment variable: ENVIRONMENT"
 );
