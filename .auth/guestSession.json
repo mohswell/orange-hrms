@@ -1,0 +1,29 @@
+{
+  "cookies": [
+    {
+      "name": "",
+      "value": "",
+      "domain": "",
+      "path": "",
+      "expires": "",
+      "httpOnly": "",
+      "secure": "",
+      "sameSite": ""
+    }
+  ],
+  "origins": [
+    {
+      "origin": "",
+      "localStorage": [
+        {
+          "name": "",
+          "value": ""
+        },
+        {
+          "name": "",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
