@@ -7,7 +7,8 @@ const environmentPath = process.env.ENVIRONMENT
   ? path.resolve(__dirname, `./env/.env.${process.env.ENVIRONMENT}`)
   : path.resolve(__dirname, './env/.env.dev');
 
-dotenv.config({ path: environmentPath });
+// Override system vars (e.g., Windows USERNAME) so dotenv values win
+dotenv.config({ path: environmentPath, override: true });
 
 import { STORAGE_PATH } from './types/constants';
 
@@ -34,25 +35,25 @@ export default defineConfig({
   projects: [
     {
       name: 'Guest Users - Chromium',
-      testMatch: /tests\/ui\/auth\/.*\.spec\.ts$/, // matches only auth folder
+      testDir: './tests/ui/auth',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1366, height: 768 },
-
       },
     },
 
-    // Authenticated project — uses saved browser storage (cookies/localStorage)
     {
       name: 'Authenticated Users - Chromium',
+      testDir: './tests/ui',
+      testIgnore: ['**/auth/**'],
       use: {
         ...devices['Desktop Chrome'],
         storageState: STORAGE_PATH,
-        viewport: { width: 1366, height: 768 },
       },
-      // Skip UI auth/login tests for this authenticated project to avoid running
-      // tests that expect a fresh state when the context is already logged-in.
-      testIgnore: ['**/tests/ui/auth/**', '**/ui/auth/**'],
+    },
+
+    {
+      name: 'API - Chromium',
+      testDir: './tests/api',
     },
 
     /* Test against mobile viewports. */
