@@ -26,9 +26,6 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [['blob'], ['github']] : 'html',
-  expect: {
-    timeout: 15000,
-  },
   use: {
     baseURL: URL,
     trace: 'on-first-retry',
