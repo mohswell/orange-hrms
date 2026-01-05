@@ -50,37 +50,37 @@ export const httpMethods = {
 
 
 export const apiEndpoints: Record<string, any> = {
-    users: 'admin/users',
+    users: '/admin/users',
     jobs: {
-        jobTitles: 'admin/job-title',
-        payGrades: 'admin/pay-grades',
-        employmentStatus: 'admin/employment-statuses',
-        jobCategories: 'admin/job-categories',
-        workShifts: 'admin/work-shifts',
+        jobTitles: '/admin/job-title',
+        payGrades: '/admin/pay-grades',
+        employmentStatus: '/admin/employment-statuses',
+        jobCategories: '/admin/job-categories',
+        workShifts: '/admin/work-shifts',
     },
     organization: {
-        generalInformation: 'admin/organization',
-        locations: 'admin/locations',
-        structure: 'admin/subunits'
+        generalInformation: '/admin/organization',
+        locations: '/admin/locations',
+        structure: '/admin/subunits'
     },
     qualifications: {
-        skills: 'admin/skills',
-        education: 'admin/educations',
-        licenses: 'admin/licenses',
-        languages: 'admin/languages',
-        memberships: 'admin/memberships',
+        skills: '/admin/skills',
+        education: '/admin/educations',
+        licenses: '/admin/licenses',
+        languages: '/admin/languages',
+        memberships: '/admin/memberships',
     },
-    nationalities: 'admin/nationalities',
-    corporateBranding: 'admin/theme',
+    nationalities: '/admin/nationalities',
+    corporateBranding: '/admin/theme',
     configurations: {
-        emailConfigurations: 'admin/email-configuration',
-        emailSubscriptions: 'admin/email-subscription',
-        languagePackages: 'admin/i18n/languages',
-        localization: 'admin/localization',
-        modules: 'admin/modules',
-        socialMediaAuthentication: 'admin/openid-providers',
-        registerOauthClient: 'admin/oauth-clients',
-        ldapConfiguration: 'admin/ldap-config',
+        emailConfigurations: '/admin/email-configuration',
+        emailSubscriptions: '/admin/email-subscription',
+        languagePackages: '/admin/i18n/languages',
+        localization: '/admin/localization',
+        modules: '/admin/modules',
+        socialMediaAuthentication: '/admin/openid-providers',
+        registerOauthClient: '/admin/oauth-clients',
+        ldapConfiguration: '/admin/ldap-config',
     },
 }
 

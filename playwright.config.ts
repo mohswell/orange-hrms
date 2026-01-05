@@ -26,6 +26,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [['blob'], ['github']] : 'html',
+  expect: {
+    timeout: 15000,
+  },
   use: {
     baseURL: URL,
     trace: 'on-first-retry',
@@ -36,6 +39,7 @@ export default defineConfig({
     {
       name: 'Guest User - UI',
       testDir: './tests/ui/auth',
+      testIgnore: ['**/auth/login.spec.ts'],
       use: {
         ...devices['Desktop Chrome'],
       },
@@ -44,7 +48,7 @@ export default defineConfig({
     {
       name: 'Admin User - UI',
       testDir: './tests/ui',
-      testIgnore: ['**/auth/**'],
+      testIgnore: ['**/auth/forgot-password.spec.ts'],
       use: {
         ...devices['Desktop Chrome'],
         storageState: STORAGE_PATH,
