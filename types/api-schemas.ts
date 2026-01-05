@@ -64,3 +64,5 @@ export type localizationAPIResponse = {
     meta: string[];
     rels: string[];
 }
+
+export type QueryParams = Record<string, string | number | boolean>;

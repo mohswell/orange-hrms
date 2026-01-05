@@ -8,7 +8,7 @@ const environmentPath = process.env.ENVIRONMENT
   : path.resolve(__dirname, './env/.env.dev');
 
 // Override system vars (e.g., Windows USERNAME) so dotenv values win
-dotenv.config({ path: environmentPath, override: true });
+dotenv.config({ path: environmentPath, override: true, quiet: true });
 
 import { STORAGE_PATH } from './types/constants';
 
@@ -34,7 +34,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'Guest Users - Chromium',
+      name: 'Guest User - UI',
       testDir: './tests/ui/auth',
       use: {
         ...devices['Desktop Chrome'],
@@ -42,7 +42,7 @@ export default defineConfig({
     },
 
     {
-      name: 'Authenticated Users - Chromium',
+      name: 'Admin User - UI',
       testDir: './tests/ui',
       testIgnore: ['**/auth/**'],
       use: {
@@ -52,8 +52,12 @@ export default defineConfig({
     },
 
     {
-      name: 'API - Chromium',
+      name: 'API',
       testDir: './tests/api',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: STORAGE_PATH,
+      },
     },
 
     /* Test against mobile viewports. */

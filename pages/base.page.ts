@@ -1,3 +1,4 @@
+import { uiPages } from "@/types/constants";
 import { USER_DROPDOWN_MENU_OPTIONS } from "@/types/menu-options";
 import { expect, Locator, Page } from "@playwright/test";
 
@@ -241,5 +242,9 @@ export class BasePage {
   async logout(): Promise<void> {
     await this.clickUserOption(USER_DROPDOWN_MENU_OPTIONS.LOGOUT);
     await expect(this.loginForm.loginFormTitle).toBeVisible();
+  }
+
+  async navigateToUsersPage(): Promise<void> {
+    await this.page.goto(uiPages.admin.users.view);
   }
 }
